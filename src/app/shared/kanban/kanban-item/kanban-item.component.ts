@@ -10,7 +10,7 @@ const statusMapperColors = {
 const statusMapperText = {
   Medium: 'Media',
   High: 'Alta',
-  Low: 'Baja',
+  Low: 'Baixa',
 };
 
 @Component({

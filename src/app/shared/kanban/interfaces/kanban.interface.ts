@@ -1,5 +1,5 @@
 export interface KanbanColumn {
-  id: number;
+  id: string;
   title: string;
   tickets: KanbanItem[];
   allowedStatus: string[];
