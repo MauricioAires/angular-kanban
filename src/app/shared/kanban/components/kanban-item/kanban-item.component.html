@@ -1,0 +1,28 @@
+<div class="kanban-item-container">
+  <header>
+    <p class="font-normal text-sm mb-4 m-0">{{ item().title }}</p>
+  </header>
+
+  <p class="text-sm">{{ item().description }}</p>
+
+  <footer class="flex flex-row justify-content-between align-items-center">
+    <div [class]="color()" class="px-4 py-1 rounded-full">
+      <span>{{ statusText() }}</span>
+    </div>
+
+    <p-avatar
+      [label]="getInitials(item().assignee)"
+      styleClass="mr-2"
+      [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }"
+      shape="circle"
+      [pTooltip]="'Responsável: ' + item().assignee"
+      tooltipPosition="bottom"
+    />
+  </footer>
+</div>
+
+<!--
+
+- modal de visualização do card
+
+-->

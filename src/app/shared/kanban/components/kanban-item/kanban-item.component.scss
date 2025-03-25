@@ -1,0 +1,30 @@
+@import "primeflex/primeflex.scss";
+
+::ng-deep {
+  /* Tooltip */
+  .p-tooltip-arrow {
+    display: none;
+  }
+  .p-tooltip {
+    max-width: unset;
+  }
+  .p-tooltip-text {
+    font-size: 12px;
+    padding: 0.3rem;
+    font-weight: normal;
+  }
+
+  .p-tooltip-text {
+    white-space: break-word !important;
+  }
+}
+
+.kanban-item-container {
+  &:hover {
+    @include styleclass("bg-gray-300");
+  }
+
+  transition: background-color 0.3s ease-in-out;
+
+  @include styleclass("bg-white p-3 border-round-md shadow-3 cursor-pointer");
+}
