@@ -1,5 +1,5 @@
 import { KanbanColumn } from './kanban';
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker/locale/pt_BR';
 
 export function createMockColumns(): KanbanColumn[] {
   /**
@@ -91,13 +91,16 @@ function createMockStatus() {
 }
 
 function cerateTask(status: string[]) {
-  console.log(status);
   return {
     id: faker.string.uuid(),
     statusId: faker.helpers.arrayElement(status),
     title: faker.person.fullName(),
-    description: faker.person.bio(),
+    description: faker.lorem.sentence(),
     assignee: faker.person.fullName(),
     priority: faker.helpers.arrayElement(['High', 'Low', 'Medium']),
   };
 }
+
+/**
+ * Adicionar responsável pelo cadastro, nome do responsável
+ */

@@ -15,6 +15,8 @@ import {
   KanbanItem,
   KanbanColumnComponent,
   KanbanItemComponent,
+  CanDropContainerComponent,
+  CannotDropContainerComponent,
 } from './shared/kanban';
 import { createMockColumns } from './shared/data';
 import { debounceTime, of } from 'rxjs';
@@ -28,6 +30,8 @@ import { debounceTime, of } from 'rxjs';
     CdkDrag,
     CdkDropList,
     CdkDropListGroup,
+    CanDropContainerComponent,
+    CannotDropContainerComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -45,6 +49,14 @@ export class AppComponent implements OnInit {
 
         this.columns.set(res);
       });
+  }
+
+  protected canDrop(column: KanbanColumn): boolean {
+    return this.dragging() && column.canDrag && !column.isDragging;
+  }
+
+  protected cannotDrop(column: KanbanColumn): boolean {
+    return this.dragging() && !column.canDrag && !column.isDragging;
   }
 
   protected listDrop(event: CdkDragDrop<undefined>) {

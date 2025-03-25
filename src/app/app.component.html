@@ -1,4 +1,4 @@
-<div style="max-width: 1000px; margin: auto" class="my-24">
+<div class="my-24">
   <div class="flex w-full flex-row gap-3" cdkDropListGroup>
     @for (column of columns(); track column.id) {
 
@@ -16,31 +16,15 @@
       </h2>
 
       <div class="relative p-2 flex flex-column flex-1">
-        @if(dragging() && !column.canDrag && !column.isDragging ){
-        <div
-          style="max-height: 100dvh; min-height: 100dvh"
-          class="bg-gray-100 absolute sticky pointer-events-none flex border-round-lg p-3 z-5 justify-content-start align-items-start left-0 right-0 top-0 bottom-0"
-        >
-          <div
-            class="flex mt-3 text-gray-700 flex-column gap-2 align-items-center"
-          >
-            <i class="pi pi-ban"></i>
-            <p class="text-center m-0 text-sm">
-              Você não pode mover esse item para essa coluna devido ás
-              configurações ou permissões do fluxo de trabalho
-            </p>
-          </div>
-        </div>
-        }@else if(dragging() && column.canDrag && !column.isDragging){
-        <div
-          style="max-height: 100dvh; min-height: 100dvh"
-          class="absolute sticky pointer-events-none flex border-round-lg p-3 z-5 border-1 border-blue-400 justify-content-center align-items-center bg-blue-100 left-0 right-0 top-0 bottom-0"
-        >
-          <p class="text-center text-sm uppercase text-blue-700 font-semibold">
-            {{ column.title }}
-          </p>
-        </div>
-        } @for (ticket of column.tickets; track ticket.id) {
+        <!-- Usando @if para verificar e renderizar o conteúdo baseado na condição -->
+        @if(cannotDrop(column)){
+        <app-cannot-drop-container />
+        }@else if(canDrop(column)){
+        <app-can-drop-container [columnTitle]="column.title" />
+        }
+
+        <!-- Looping sobre os tickets -->
+        @for (ticket of column.tickets; track ticket.id) {
 
         <app-kanban-item
           cdkDrag
