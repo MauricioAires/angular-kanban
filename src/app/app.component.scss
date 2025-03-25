@@ -8,6 +8,10 @@
   margin-bottom: 0;
 }
 
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
 /* Estilização para o componente que está sendo movido  */
 .cdk-drag-preview > div {
   @include styleclass("shadow-md");

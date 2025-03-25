@@ -98,7 +98,17 @@ export class AppComponent implements OnInit {
   /** Predicate function that only allows even numbers to be dropped into a list. */
 
   protected drop(event: CdkDragDrop<KanbanColumn>) {
-    const { previousIndex, currentIndex, container, previousContainer } = event;
+    const {
+      previousIndex,
+      currentIndex,
+      container,
+      previousContainer,
+      isPointerOverContainer,
+    } = event;
+
+    if (!isPointerOverContainer) {
+      return;
+    }
 
     if (container === previousContainer) {
       moveItemInArray(container.data.tickets, previousIndex, currentIndex);
