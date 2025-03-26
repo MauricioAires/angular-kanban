@@ -1,8 +1,9 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input, OnInit } from '@angular/core';
 import { KanbanItem } from '../../interfaces/kanban.interface';
 import { AvatarModule } from 'primeng/avatar';
 import { DialogService } from 'primeng/dynamicdialog';
 import { TooltipModule } from 'primeng/tooltip';
+import { ItemModalComponent } from '../item-modal/item-modal.component';
 
 const statusMapperColors = {
   Medium: 'bg-yellow-200',
@@ -23,7 +24,7 @@ const statusMapperText = {
   templateUrl: './kanban-item.component.html',
   styleUrl: './kanban-item.component.scss',
 })
-export class KanbanItemComponent {
+export class KanbanItemComponent implements OnInit {
   // Services
   private dialogService = inject(DialogService);
   // Inputs
@@ -36,6 +37,10 @@ export class KanbanItemComponent {
     return statusMapperText[this.item().priority];
   });
 
+  public ngOnInit(): void {
+    this.openItemModal();
+  }
+
   protected getInitials(fullName: string) {
     const names = fullName.split(' ');
 
@@ -43,5 +48,9 @@ export class KanbanItemComponent {
     const lastLetter = names[names.length - 1].charAt(0).toUpperCase();
 
     return firstLetter + lastLetter;
+  }
+
+  protected openItemModal(): void {
+    this.dialogService.open(ItemModalComponent, {});
   }
 }

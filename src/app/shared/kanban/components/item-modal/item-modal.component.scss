@@ -1,0 +1,26 @@
+::ng-deep {
+  .p-dialog .p-dialog-content {
+    padding: 0;
+    border-radius: 6px;
+  }
+  .p-dialog .p-dialog-header {
+    display: none;
+  }
+}
+
+.item-modal-container {
+  height: 90dvh;
+  min-height: 90dvh;
+
+  min-width: 60dvw;
+  max-width: 90dvw;
+}
+
+.list-item {
+  &:not(:last-of-type)::after {
+    content: "/";
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+    right: 0;
+  }
+}

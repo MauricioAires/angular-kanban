@@ -1,4 +1,11 @@
-<div class="kanban-item-container">
+<button
+  [attr.aria-label]="
+    item().title + 'Use a tecla Enter para carregar a visualização do item.'
+  "
+  class="kanban-item-container"
+  (click)="openItemModal()"
+  type="button"
+>
   <header>
     <p class="font-normal text-sm mb-4 m-0">{{ item().title }}</p>
   </header>
@@ -19,7 +26,7 @@
       tooltipPosition="bottom"
     />
   </footer>
-</div>
+</button>
 
 <!--
 

@@ -1,0 +1,80 @@
+<div class="item-modal-container px-3 pt-4 pb-5">
+  <header class="flex flex-column">
+    <div class="flex flex-row justify-content-between">
+      <nav>
+        <ol class="m-0 p-0 flex flex-row">
+          <div
+            class="list-item flex justify-content-center align-items-center"
+            role="listitem"
+          >
+            <button
+              class="border-none text-xs text-gray-800 bg-white shadow-none"
+            >
+              Adicionar pai
+            </button>
+          </div>
+          <div
+            class="list-item text-xs flex text-gray-800 flex-row justify-content-center align-items-center gap-1"
+            role="listitem"
+          >
+            <i class="pi pi-cog text-xs"></i>
+
+            <div role="presentation">
+              <a href="#" class="no-underline text-gray-800">STRD-1879</a>
+            </div>
+          </div>
+        </ol>
+      </nav>
+
+      <div class="flex flex-row">
+        <button class="border-none bg-white" (click)="close()">
+          <i class="pi pi-eye"></i> 1
+        </button>
+        <button class="border-none bg-white" (click)="close()">
+          <i class="pi pi-thumbs-up"></i>
+        </button>
+        <button class="border-none bg-white" (click)="close()">
+          <i class="pi pi-share-alt"></i>
+        </button>
+        <button class="border-none bg-white" (click)="close()">
+          <i class="pi pi-ellipsis-h"></i>
+        </button>
+        <button class="border-none bg-white" (click)="close()">
+          <i class="pi pi-times"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex h-full flex-row relative overflow-auto">
+    <div class="flex-1 pb-5 pr-3 h-full">
+      <div>
+        <h1 class="w-full text-2xl text-gray-800 hover:bg-gray-200 p-2 m-0">
+          [UX]Funil de agentes
+        </h1>
+
+        <button
+          class="border-none bg-white text-sm text-gray-900 font-semibold border-round-sm m-1 flex flex-row gap-1 hover:bg-gray-200 h-2rem px-2 justify-content-center align-items-center"
+        >
+          <i class="pi pi-plus"></i> Adicionar
+        </button>
+      </div>
+
+      <h2 class="text-base px-2 text-gray-900">Descrição</h2>
+    </div>
+
+    <div class="flex-1 border-gray-300 p-4 h-full border-left-1">
+      <footer
+        class="flex flex-row gap-3 align-content-end justify-content-between"
+      >
+        <button (click)="close()" class="trt-button-outlined-terciary">
+          Cancelar
+        </button>
+        <div class="flex flex-row">
+          <button class="trt-button-outlined-terciary">Voltar</button>
+          <button class="trt-button-text">Confirmar novo modelo</button>
+        </div>
+      </footer>
+    </div>
+  </main>
+</div>
