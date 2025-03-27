@@ -1,5 +1,8 @@
 @import "primeicons/primeicons.css";
 @import "primeflex/primeflex.scss";
+// Estilização do bloco de editor de texto
+@import "../node_modules/quill/dist/quill.core.css";
+@import "../node_modules/quill/dist/quill.snow.css";
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..700&display=swap");
 

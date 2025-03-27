@@ -27,19 +27,34 @@
       </nav>
 
       <div class="flex flex-row">
-        <button class="border-none bg-white" (click)="close()">
+        <button
+          class="border-none bg-white text-sm text-gray-900 font-semibold border-round-sm m-1 flex flex-row gap-1 hover:bg-gray-200 h-2rem px-2 justify-content-center align-items-center"
+          (click)="close()"
+        >
           <i class="pi pi-eye"></i> 1
         </button>
-        <button class="border-none bg-white" (click)="close()">
+        <button
+          class="border-none bg-white text-sm text-gray-900 font-semibold border-round-sm m-1 flex flex-row gap-1 hover:bg-gray-200 h-2rem px-2 justify-content-center align-items-center"
+          (click)="close()"
+        >
           <i class="pi pi-thumbs-up"></i>
         </button>
-        <button class="border-none bg-white" (click)="close()">
+        <button
+          class="border-none bg-white text-sm text-gray-900 font-semibold border-round-sm m-1 flex flex-row gap-1 hover:bg-gray-200 h-2rem px-2 justify-content-center align-items-center"
+          (click)="close()"
+        >
           <i class="pi pi-share-alt"></i>
         </button>
-        <button class="border-none bg-white" (click)="close()">
+        <button
+          class="border-none bg-white text-sm text-gray-900 font-semibold border-round-sm m-1 flex flex-row gap-1 hover:bg-gray-200 h-2rem px-2 justify-content-center align-items-center"
+          (click)="close()"
+        >
           <i class="pi pi-ellipsis-h"></i>
         </button>
-        <button class="border-none bg-white" (click)="close()">
+        <button
+          class="border-none bg-white text-sm text-gray-900 font-semibold border-round-sm m-1 flex flex-row gap-1 hover:bg-gray-200 h-2rem px-2 justify-content-center align-items-center"
+          (click)="close()"
+        >
           <i class="pi pi-times"></i>
         </button>
       </div>
@@ -60,20 +75,144 @@
         </button>
       </div>
 
-      <h2 class="text-base px-2 text-gray-900">Descrição</h2>
+      <div class="card">
+        <p-editor [(ngModel)]="text" [style]="{ height: '320px' }" />
+      </div>
+
+      <div class="flex flex-row justify-content-between">
+        <h2 class="text-base px-2 text-gray-900">Itens vinculados</h2>
+        <button
+          class="border-none bg-white text-sm text-gray-900 font-semibold border-round-sm m-1 flex flex-row gap-1 hover:bg-gray-200 h-2rem px-2 justify-content-center align-items-center"
+        >
+          <i class="pi pi-plus"></i>
+        </button>
+      </div>
+
+      <div class="flex flex-column p-2 gap-2">
+        <span class="text-sm font-normal text-gray-700">is cloned by</span>
+        <span class="text-sm font-normal text-gray-700">relates to</span>
+        <span class="text-sm font-normal text-gray-700">causes</span>
+        <span class="text-sm font-normal text-gray-700">clones</span>
+      </div>
+
+      <div class="flex flex-row justify-content-between">
+        <h2 class="text-base px-2 text-gray-900">Atividade</h2>
+      </div>
+
+      <div class="flex px-2 flex-row gap-2 justify-content-between">
+        <div class="flex flex-row align-items-center">
+          <span class="text-sm">Mostrar:</span>
+          <nav>
+            <ol class="flex flex-row p-0 m-0 gap-1">
+              <div role="listitem">
+                <button
+                  class="border-none text-sm font-semibold cursor-pointer text-gray-700 bg-gray-100 border-round-xs shadow-none"
+                >
+                  Tudo
+                </button>
+              </div>
+              <div role="listitem">
+                <button
+                  class="border-none text-sm font-semibold cursor-pointer text-blue-500 bg-blue-100 border-round-xs shadow-none"
+                >
+                  Comentários
+                </button>
+              </div>
+              <div role="listitem">
+                <button
+                  class="border-none text-sm font-semibold cursor-pointer text-gray-700 bg-gray-100 border-round-xs shadow-none"
+                >
+                  Histórico
+                </button>
+              </div>
+              <div role="listitem">
+                <button
+                  class="border-none text-sm font-semibold cursor-pointer text-gray-700 bg-gray-100 border-round-xs shadow-none"
+                >
+                  Registro de trabalho
+                </button>
+              </div>
+            </ol>
+          </nav>
+        </div>
+
+        <button
+          class="border-none px-2 cursor-pointer flex flex-row gap-1 align-items-center text-sm font-semibold text-gray-700 bg-gray-100 border-round-xs shadow-none"
+        >
+          Mais recente primeiro <i class="pi pi-sort-amount-down"></i>
+        </button>
+      </div>
+
+      <div class="mx-2 mt-5">
+        <div
+          class="flex flex-row justify-content-center gap-2 align-items-start"
+        >
+          <p-avatar
+            label="MF"
+            styleClass="mr-2 mt-2"
+            [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }"
+            shape="circle"
+          />
+
+          <div class="w-full flex flex-column mb-4">
+            <textarea
+              rows="1"
+              style="resize: none"
+              class="border-round-sm w-full px-2 py-3"
+              placeholder="Adicionar um comentário..."
+            ></textarea>
+
+            <div class="flex mt-2 text-xs flex-row align-items-center">
+              <b>Dica de ouro:</b>
+              <p class="ml-1 m-0">aperte <kbd>M</kbd> para fazer comentários</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="flex-1 border-gray-300 p-4 h-full border-left-1">
-      <footer
-        class="flex flex-row gap-3 align-content-end justify-content-between"
-      >
-        <button (click)="close()" class="trt-button-outlined-terciary">
-          Cancelar
+      <div class="flex flex-row gap-1">
+        <button
+          class="border-none bg-blue-500 hover:bg-blue-600 text-sm text-white font-semibold uppercase border-round-sm m-1 flex flex-row gap-1 h-2rem px-2 justify-content-center align-items-center"
+        >
+          Desenvolvida <i class="pi pi-angle-down"></i>
         </button>
-        <div class="flex flex-row">
-          <button class="trt-button-outlined-terciary">Voltar</button>
-          <button class="trt-button-text">Confirmar novo modelo</button>
+        <button
+          class="border-none bg-gray-200 hover:bg-gray-300 text-sm text-gray-900 font-semibold border-round-sm m-1 flex flex-row gap-1 h-2rem px-2 justify-content-center align-items-center"
+        >
+          <i class="pi pi-bolt"></i> Ações <i class="pi pi-angle-down"></i>
+        </button>
+      </div>
+
+      <p-accordion [multiple]="true" [activeIndex]="[0]">
+        <p-accordionTab header="Meus campos fixados">
+          <p>Lorem ipsum dolor sit amet...</p>
+        </p-accordionTab>
+        <p-accordionTab header="Informações">
+          <p>
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+            accusantium...
+          </p>
+        </p-accordionTab>
+        <p-accordionTab header="Mais campos">
+          <p>At vero eos et accusamus et iusto odio dignissimos...</p>
+        </p-accordionTab>
+        <p-accordionTab header="Automação">
+          <p>At vero eos et accusamus et iusto odio dignissimos...</p>
+        </p-accordionTab>
+      </p-accordion>
+
+      <footer class="flex flex-row justify-content-between">
+        <div class="flex flex-column text-xs">
+          <p class="m-0">Criado 5 de março de 2025 às 10:03</p>
+          <p class="m-0">Atualizado há 15 horas</p>
         </div>
+        <button
+          class="border-none bg-gray-200 hover:bg-gray-300 text-sm text-gray-900 font-semibold border-round-sm m-1 flex flex-row gap-1 h-2rem px-2 justify-content-center align-items-center"
+        >
+          <i class="pi pi-cog"></i> Configurar
+        </button>
       </footer>
     </div>
   </main>
