@@ -38,7 +38,7 @@ export class KanbanItemComponent implements OnInit {
   });
 
   public ngOnInit(): void {
-    this.openItemModal();
+    // this.openItemModal();
   }
 
   protected getInitials(fullName: string) {

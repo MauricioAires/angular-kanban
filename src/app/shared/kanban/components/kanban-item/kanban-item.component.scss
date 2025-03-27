@@ -20,13 +20,13 @@
 }
 
 .kanban-item-container {
-  &:hover {
-    @include styleclass("bg-gray-300");
-  }
-
   transition: background-color 0.3s ease-in-out;
 
   @include styleclass(
     "bg-white p-3 border-round-md shadow-3 cursor-pointer border-none w-full"
   );
+
+  &:hover {
+    @include styleclass("bg-gray-300");
+  }
 }
