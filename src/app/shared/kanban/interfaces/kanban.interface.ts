@@ -2,6 +2,7 @@ export interface KanbanColumn {
   id: string;
   title: string;
   tickets: KanbanItem[];
+  count: number;
   allowedStatus: string[];
   canDrag: boolean;
   isDragging: boolean;
