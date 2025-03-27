@@ -1,136 +1,120 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { SidebarModule } from 'primeng/sidebar';
+import { ButtonModule } from 'primeng/button';
+import { AvatarModule } from 'primeng/avatar';
+import { InputTextModule } from 'primeng/inputtext';
+import { TooltipModule } from 'primeng/tooltip';
 
-import {
-  CdkDrag,
-  CdkDragDrop,
-  CdkDragStart,
-  CdkDropList,
-  CdkDropListGroup,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
-
-import {
-  KanbanColumn,
-  KanbanItem,
-  KanbanColumnComponent,
-  KanbanItemComponent,
-  CanDropContainerComponent,
-  CannotDropContainerComponent,
-} from './shared/kanban';
-import { createMockColumns } from './shared/data';
-import { debounceTime, of } from 'rxjs';
+import { MenuItem } from 'primeng/api';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { BadgeModule } from 'primeng/badge';
+import { RippleModule } from 'primeng/ripple';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    KanbanColumnComponent,
-    KanbanItemComponent,
-    CdkDrag,
-    CdkDropList,
-    CdkDropListGroup,
-    CanDropContainerComponent,
-    CannotDropContainerComponent,
+    RouterOutlet,
+    SidebarModule,
+    ButtonModule,
+    InputTextModule,
+    AvatarModule,
+    TooltipModule,
+    PanelMenuModule,
+    BadgeModule,
+    RippleModule,
+    CommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  protected columns = signal<KanbanColumn[]>([]);
-  protected dragging = signal(false);
-  protected draggingColumnId = signal(0);
+  protected items!: MenuItem[];
 
-  public ngOnInit(): void {
-    of(createMockColumns())
-      .pipe(debounceTime(300))
-      .subscribe((res) => {
-        console.log(res);
-
-        this.columns.set(res);
-      });
+  ngOnInit() {
+    this.items = [
+      {
+        label: 'Mail',
+        icon: 'pi pi-envelope',
+        badge: '5',
+        items: [
+          {
+            label: 'Compose',
+            icon: 'pi pi-file-edit',
+            shortcut: '⌘+N',
+          },
+          {
+            label: 'Inbox',
+            icon: 'pi pi-inbox',
+            badge: '5',
+          },
+          {
+            label: 'Sent',
+            icon: 'pi pi-send',
+            shortcut: '⌘+S',
+          },
+          {
+            label: 'Trash',
+            icon: 'pi pi-trash',
+            shortcut: '⌘+T',
+          },
+        ],
+      },
+      {
+        label: 'Reports',
+        icon: 'pi pi-chart-bar',
+        shortcut: '⌘+R',
+        items: [
+          {
+            label: 'Sales',
+            icon: 'pi pi-chart-line',
+            badge: '3',
+          },
+          {
+            label: 'Products',
+            icon: 'pi pi-list',
+            badge: '6',
+          },
+        ],
+      },
+      {
+        label: 'Profile',
+        icon: 'pi pi-user',
+        shortcut: '⌘+W',
+        items: [
+          {
+            label: 'Settings',
+            icon: 'pi pi-cog',
+            shortcut: '⌘+O',
+          },
+          {
+            label: 'Privacy',
+            icon: 'pi pi-shield',
+            shortcut: '⌘+P',
+          },
+        ],
+      },
+    ];
   }
 
-  protected canDrop(column: KanbanColumn): boolean {
-    return this.dragging() && column.canDrag && !column.isDragging;
+  toggleAll() {
+    const expanded = !this.areAllItemsExpanded();
+    this.items = this.toggleAllRecursive(this.items, expanded);
   }
 
-  protected cannotDrop(column: KanbanColumn): boolean {
-    return this.dragging() && !column.canDrag && !column.isDragging;
+  private toggleAllRecursive(items: MenuItem[], expanded: boolean): MenuItem[] {
+    return items.map((menuItem) => {
+      menuItem.expanded = expanded;
+      if (menuItem.items) {
+        menuItem.items = this.toggleAllRecursive(menuItem.items, expanded);
+      }
+      return menuItem;
+    });
   }
 
-  protected listDrop(event: CdkDragDrop<undefined>) {
-    const { previousIndex, currentIndex } = event;
-
-    moveItemInArray(this.columns()!, previousIndex, currentIndex);
-  }
-
-  public onDragStart(event: CdkDragStart<KanbanItem>) {
-    const itemStatus = event.source.data.statusId;
-    const itemId = event.source.data.id;
-
-    this.columns.update((state) =>
-      state.map((column) => {
-        /**
-         * Check if the column is already dragged
-         */
-        column.canDrag = column.allowedStatus.includes(itemStatus);
-        column.isDragging = column.tickets.some((item) => item.id === itemId);
-
-        return column;
-      })
-    );
-
-    this.dragging.set(true);
-  }
-  public onDragEnd(event: CdkDragStart<any[]>) {
-    this.columns.update((state) =>
-      state.map((column) => {
-        /**
-         * Check if the column is already dragged
-         */
-        column.canDrag = true;
-        column.isDragging = false;
-
-        return column;
-      })
-    );
-
-    this.dragging.set(false);
-  }
-  protected evenPredicate(
-    drag: CdkDrag<KanbanItem>,
-    drop: CdkDropList<KanbanColumn>
-  ) {
-    const itemStatus = drag.data.statusId;
-
-    return drop.data.allowedStatus.includes(itemStatus);
-  }
-
-  /** Predicate function that only allows even numbers to be dropped into a list. */
-
-  protected drop(event: CdkDragDrop<KanbanColumn>) {
-    const {
-      previousIndex,
-      currentIndex,
-      container,
-      previousContainer,
-      isPointerOverContainer,
-    } = event;
-
-    if (!isPointerOverContainer) {
-      return;
-    }
-
-    if (container === previousContainer) {
-      moveItemInArray(container.data.tickets, previousIndex, currentIndex);
-    } else {
-      transferArrayItem(
-        previousContainer.data.tickets,
-        container.data.tickets,
-        previousIndex,
-        currentIndex
-      );
-    }
+  private areAllItemsExpanded(): boolean {
+    return this.items.every((menuItem) => menuItem.expanded);
   }
 }

@@ -1,44 +1,35 @@
-<div class="my-24">
-  <div class="flex w-full flex-row gap-3" cdkDropListGroup>
-    @for (column of columns(); track column.id) {
-
-    <app-kanban-column
-      class="flex-1 bg-gray-100 relative kanban-column border-round-lg"
-      cdkDropList
-      [cdkDropListData]="column"
-      (cdkDropListDropped)="drop($event)"
-      [cdkDropListEnterPredicate]="evenPredicate"
+<header
+  class="flex sticky align-items-center justify-content-between px-3 py-2 border-gray-200 border-bottom-1 bg-white"
+>
+  <div class="flex align-items-center gap-3">
+    <button
+      pButton
+      icon="pi pi-th-large"
+      class="p-button-text flex flex-row gap-2 text-primary"
     >
-      <h2
-        class="text-xs sticky top-0 my-3 px-2 text-gray-600 font-bold uppercase white-space-nowrap"
-      >
-        {{ column.title }}
-      </h2>
-
-      <div class="relative p-2 flex flex-column flex-1">
-        <!-- Usando @if para verificar e renderizar o conteúdo baseado na condição -->
-        @if(cannotDrop(column)){
-        <app-cannot-drop-container />
-        }@else if(canDrop(column)){
-        <app-can-drop-container [columnTitle]="column.title" />
-        }
-
-        <!-- Looping sobre os tickets -->
-        @for (ticket of column.tickets; track ticket.id) {
-
-        <app-kanban-item
-          cdkDrag
-          [cdkDragData]="ticket"
-          (cdkDragStarted)="onDragStart($event)"
-          (cdkDragEnded)="onDragEnd($event)"
-          cdkDragPreviewContainer="parent"
-          [item]="ticket"
-          class="mb-1 kanban-item"
-        />
-
-        }
-      </div>
-    </app-kanban-column>
-    }
+      WeFin
+    </button>
   </div>
+
+  <div class="flex align-items-center gap-3">
+    <p-avatar
+      label="MF"
+      styleClass="mr-2"
+      [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }"
+      shape="circle"
+      pTooltip="Perfil e configurações"
+      tooltipPosition="bottom"
+    />
+  </div>
+</header>
+
+<div class="flex">
+  <aside class="h-screen border-right-1 border-gray-200 flex flex-column">
+    <nav class="flex w-15rem flex-column gap-2"></nav>
+  </aside>
+
+  <!-- Área de conteúdo -->
+  <main class="flex-grow-1 p-4">
+    <router-outlet />
+  </main>
 </div>

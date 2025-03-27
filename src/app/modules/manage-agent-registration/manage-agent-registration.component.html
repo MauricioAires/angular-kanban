@@ -1,0 +1,45 @@
+<div class="my-24">
+  <div class="flex w-full flex-row gap-3" cdkDropListGroup>
+    @for (column of columns(); track column.id) {
+
+    <app-kanban-column
+      class="flex-1 bg-gray-100 relative kanban-column border-round-lg"
+      cdkDropList
+      [cdkDropListData]="column"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListEnterPredicate]="evenPredicate"
+    >
+      <h2
+        class="text-xs sticky w-full flex top-0 my-3 px-2 text-gray-600 font-bold uppercase white-space-nowrap"
+      >
+        <span> {{ column.title }}</span>
+        <span class="ml-2 font-normal"> {{ column.count }}</span>
+      </h2>
+
+      <div class="relative p-2 flex flex-column flex-1">
+        <!-- Usando @if para verificar e renderizar o conteúdo baseado na condição -->
+        @if(cannotDrop(column)){
+        <app-cannot-drop-container />
+        }@else if(canDrop(column)){
+        <app-can-drop-container [columnTitle]="column.title" />
+        }
+
+        <!-- Looping sobre os tickets -->
+        @for (ticket of column.tickets; track ticket.id) {
+
+        <app-kanban-item
+          cdkDrag
+          [cdkDragData]="ticket"
+          (cdkDragStarted)="onDragStart($event)"
+          (cdkDragEnded)="onDragEnd($event)"
+          cdkDragPreviewContainer="parent"
+          [item]="ticket"
+          class="mb-1 kanban-item"
+        />
+
+        }
+      </div>
+    </app-kanban-column>
+    }
+  </div>
+</div>

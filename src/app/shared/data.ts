@@ -14,6 +14,10 @@ export function createMockColumns(): KanbanColumn[] {
   return [
     {
       id: faker.string.uuid(),
+      count: faker.number.int({
+        min: 10,
+        max: 100,
+      }),
       title: 'Triagem',
       tickets: Array(4)
         .fill(0)
@@ -24,6 +28,10 @@ export function createMockColumns(): KanbanColumn[] {
     },
     {
       id: faker.string.uuid(),
+      count: faker.number.int({
+        min: 10,
+        max: 100,
+      }),
       title: 'Modelo de comissão',
       tickets: Array(3)
         .fill(0)
@@ -34,6 +42,10 @@ export function createMockColumns(): KanbanColumn[] {
     },
     {
       id: faker.string.uuid(),
+      count: faker.number.int({
+        min: 10,
+        max: 100,
+      }),
       title: 'Documentação - Agente',
       tickets: Array(3)
         .fill(0)
@@ -45,6 +57,10 @@ export function createMockColumns(): KanbanColumn[] {
     {
       id: faker.string.uuid(),
       title: 'Documentação - Empresa',
+      count: faker.number.int({
+        min: 10,
+        max: 100,
+      }),
       tickets: Array(3)
         .fill(0)
         .map(() => cerateTask(column.map((c) => c.id))),
