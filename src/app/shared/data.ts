@@ -19,7 +19,7 @@ export function createMockColumns(): KanbanColumn[] {
         max: 100,
       }),
       title: 'Cadastro Agente',
-      tickets: Array(4)
+      tickets: Array(40)
         .fill(0)
         .map(() => cerateTask(column.map((c) => c.id))),
       allowedStatus: column.slice(0, 2).map((c) => c.id),
@@ -33,7 +33,7 @@ export function createMockColumns(): KanbanColumn[] {
         max: 100,
       }),
       title: 'Modelo de comissão',
-      tickets: Array(3)
+      tickets: Array(32)
         .fill(0)
         .map(() => cerateTask(column.map((c) => c.id))),
       allowedStatus: column.slice(2, 4).map((c) => c.id),

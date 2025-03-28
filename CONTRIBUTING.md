@@ -6,18 +6,18 @@ Este projeto segue um padrão de commits em **português** para garantir a clare
 
 Abaixo estão os tipos de commits aceitos, junto com seus respectivos emojis e códigos a serem utilizados nas mensagens de commit:
 
-| Tipo     | Emoji                 | Código                   |
-|:---------|:----------------------|:-------------------------|
-| feat     | :sparkles:            | `:sparkles:`             |
-| fix      | :bug:                 | `:bug:`                  |
-| docs     | :books:               | `:books:`                |
-| style    | :gem:                 | `:gem:`                  |
-| refactor | :hammer:              | `:hammer:`               |
-| perf     | :rocket:              | `:rocket:`               |
-| test     | :rotating_light:      | `:rotating_light:`       |
-| build    | :package:             | `:package:`              |
-| ci       | :construction_worker: | `:construction_worker:`  |
-| chore    | :wrench:              | `:wrench:`               |
+| Tipo     | Emoji                 | Código                  |
+| :------- | :-------------------- | :---------------------- |
+| feat     | :sparkles:            | `:sparkles:`            |
+| fix      | :bug:                 | `:bug:`                 |
+| docs     | :books:               | `:books:`               |
+| style    | :gem:                 | `:gem:`                 |
+| refactor | :hammer:              | `:hammer:`              |
+| perf     | :rocket:              | `:rocket:`              |
+| test     | :rotating_light:      | `:rotating_light:`      |
+| build    | :package:             | `:package:`             |
+| ci       | :construction_worker: | `:construction_worker:` |
+| chore    | :wrench:              | `:wrench:`              |
 
 ### Exemplos de Commits
 

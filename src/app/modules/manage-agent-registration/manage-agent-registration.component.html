@@ -12,6 +12,10 @@
       [cdkDropListData]="column"
       (cdkDropListDropped)="drop($event)"
       [cdkDropListEnterPredicate]="evenPredicate"
+      [canDrop]="canDrop(column)"
+      [cannotDrop]="cannotDrop(column)"
+      [columnTitle]="column.title"
+      [cdkDropListAutoScrollStep]="30"
     >
       <h2
         class="text-xs sticky w-full flex top-0 my-3 px-2 text-gray-600 font-bold uppercase white-space-nowrap"
@@ -20,14 +24,7 @@
         <span class="ml-2 font-normal"> {{ column.count }}</span>
       </h2>
 
-      <!-- Usando @if para verificar e renderizar o conteúdo baseado na condição -->
-      @if(cannotDrop(column)){
-      <app-cannot-drop-container />
-      }@else if(canDrop(column)){
-      <app-can-drop-container [columnTitle]="column.title" />
-      }
-
-      <div class="relative p-2 flex flex-column flex-1 h-full">
+      <div class="relative p-2 flex flex-column flex-1 h-full overflow-hidden">
         <!-- Looping sobre os tickets -->
         @for (ticket of column.tickets; track ticket.id) {
 

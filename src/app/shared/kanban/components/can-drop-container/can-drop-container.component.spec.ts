@@ -8,10 +8,9 @@ describe('CanDropContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CanDropContainerComponent]
-    })
-    .compileComponents();
-    
+      imports: [CanDropContainerComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(CanDropContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

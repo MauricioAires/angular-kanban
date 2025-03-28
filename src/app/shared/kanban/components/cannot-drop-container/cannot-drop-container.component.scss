@@ -1,16 +1,9 @@
 @import "primeflex/primeflex.scss";
 
 :host {
-  position: absolute !important;
-
-  top: 0 !important;
-  bottom: 0 !important;
-
   @include styleclass(
-    "bg-gray-100 absolute pointer-events-none flex border-round-lg p-3 z-5"
+    "bg-gray-100 w-full top-0 bottom-0 sticky h-full pointer-events-none flex border-round-lg p-3 z-4"
   );
 
-  @include styleclass(
-    "justify-content-center align-items-center left-0 right-0 top-0 bottom-0"
-  );
+  @include styleclass("justify-content-center align-items-center");
 }

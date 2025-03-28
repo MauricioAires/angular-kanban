@@ -15,8 +15,6 @@ import {
   KanbanItem,
   KanbanColumnComponent,
   KanbanItemComponent,
-  CanDropContainerComponent,
-  CannotDropContainerComponent,
 } from '../../shared/kanban';
 import { createMockColumns } from '../../shared/data';
 import { debounceTime, of } from 'rxjs';
@@ -30,8 +28,6 @@ import { debounceTime, of } from 'rxjs';
     CdkDrag,
     CdkDropList,
     CdkDropListGroup,
-    CanDropContainerComponent,
-    CannotDropContainerComponent,
   ],
   templateUrl: './manage-agent-registration.component.html',
   styleUrl: './manage-agent-registration.component.scss',
