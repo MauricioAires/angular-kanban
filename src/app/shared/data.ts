@@ -18,7 +18,7 @@ export function createMockColumns(): KanbanColumn[] {
         min: 10,
         max: 100,
       }),
-      title: 'Triagem',
+      title: 'Cadastro Agente',
       tickets: Array(4)
         .fill(0)
         .map(() => cerateTask(column.map((c) => c.id))),
@@ -46,7 +46,7 @@ export function createMockColumns(): KanbanColumn[] {
         min: 10,
         max: 100,
       }),
-      title: 'Documentação - Agente',
+      title: 'Empresa',
       tickets: Array(3)
         .fill(0)
         .map(() => cerateTask(column.map((c) => c.id))),
@@ -56,7 +56,35 @@ export function createMockColumns(): KanbanColumn[] {
     },
     {
       id: faker.string.uuid(),
-      title: 'Documentação - Empresa',
+      title: 'Contrato',
+      count: faker.number.int({
+        min: 10,
+        max: 100,
+      }),
+      tickets: Array(3)
+        .fill(0)
+        .map(() => cerateTask(column.map((c) => c.id))),
+      allowedStatus: column.slice(3, 6).map((c) => c.id),
+      canDrag: true,
+      isDragging: false,
+    },
+    {
+      id: faker.string.uuid(),
+      title: 'Primeira Operação',
+      count: faker.number.int({
+        min: 10,
+        max: 100,
+      }),
+      tickets: Array(3)
+        .fill(0)
+        .map(() => cerateTask(column.map((c) => c.id))),
+      allowedStatus: column.slice(3, 6).map((c) => c.id),
+      canDrag: true,
+      isDragging: false,
+    },
+    {
+      id: faker.string.uuid(),
+      title: 'Inativo',
       count: faker.number.int({
         min: 10,
         max: 100,
@@ -110,10 +138,48 @@ function cerateTask(status: string[]) {
   return {
     id: faker.string.uuid(),
     statusId: faker.helpers.arrayElement(status),
+    document: faker.helpers.arrayElement([
+      '123.456.789-09',
+      '987.654.321-00',
+      '456.789.123-77',
+      '321.654.987-33',
+      '159.753.486-22',
+      '753.951.258-44',
+      '852.147.963-55',
+      '369.258.147-66',
+      '741.852.963-11',
+    ]),
     title: faker.person.fullName(),
     description: faker.lorem.sentence(),
     assignee: faker.person.fullName(),
-    priority: faker.helpers.arrayElement(['High', 'Low', 'Medium']),
+    createdAt: faker.date.future({
+      refDate: new Date(),
+    }),
+    branch: faker.helpers.arrayElement([
+      'FILIAL-BHT',
+      'FILIAL-CMC',
+      'FILIAL-GOT',
+      'FILIAL-INT',
+      'FILIAL-MDT',
+      'FILIAL-MGT',
+      'FILIAL-NET',
+      'FILIAL-P2T',
+      'FILIAL-PRT',
+      'FILIAL-RST',
+      'FILIAL-S2T',
+      'FILIAL-SPT',
+      'FILIAL-UNBOX',
+      'FILIAL-WFT',
+    ]),
+    priority: faker.helpers.arrayElement([
+      'blocker',
+      'critical',
+      'high',
+      'highest',
+      'low',
+      'medium',
+      'trivial',
+    ]),
   };
 }
 

@@ -14,5 +14,20 @@ export interface KanbanItem {
   title: string;
   description: string;
   assignee: string;
-  priority: 'High' | 'Medium' | 'Low';
+  branch: string;
+  createdAt: Date;
+  document: string;
+  priority:
+    | 'blocker'
+    | 'critical'
+    | 'high'
+    | 'highest'
+    | 'low'
+    | 'medium'
+    | 'trivial';
 }
+
+/**
+ * adicionar LinkedIn
+ *
+ */
