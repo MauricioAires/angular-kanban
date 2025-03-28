@@ -1,4 +1,19 @@
+@import "primeflex/primeflex.scss";
+
 :host {
-  max-height: 100dvh;
-  min-height: 100dvh;
+  // max-height: 100dvh;
+  // min-height: 100dvh;
+
+  position: absolute !important;
+
+  top: 0 !important;
+  bottom: 0 !important;
+
+  @include styleclass(
+    "justify-content-center align-items-center bg-blue-100 left-0 right-0 top-0 bottom-0"
+  );
+
+  @include styleclass(
+    "absolute pointer-events-none flex border-round-lg p-3 z-5 border-1 border-blue-400"
+  );
 }

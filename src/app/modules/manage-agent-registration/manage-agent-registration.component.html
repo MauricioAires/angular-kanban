@@ -1,5 +1,9 @@
 <div class="my-24">
-  <div class="flex w-full flex-row gap-3" cdkDropListGroup>
+  <div
+    style="height: calc(100dvh - 200px)"
+    class="flex overflow-auto w-full flex-row gap-3"
+    cdkDropListGroup
+  >
     @for (column of columns(); track column.id) {
 
     <app-kanban-column
@@ -16,14 +20,14 @@
         <span class="ml-2 font-normal"> {{ column.count }}</span>
       </h2>
 
-      <div class="relative p-2 flex flex-column flex-1">
-        <!-- Usando @if para verificar e renderizar o conteúdo baseado na condição -->
-        @if(cannotDrop(column)){
-        <app-cannot-drop-container />
-        }@else if(canDrop(column)){
-        <app-can-drop-container [columnTitle]="column.title" />
-        }
+      <!-- Usando @if para verificar e renderizar o conteúdo baseado na condição -->
+      @if(cannotDrop(column)){
+      <app-cannot-drop-container />
+      }@else if(canDrop(column)){
+      <app-can-drop-container [columnTitle]="column.title" />
+      }
 
+      <div class="relative p-2 flex flex-column flex-1 h-full">
         <!-- Looping sobre os tickets -->
         @for (ticket of column.tickets; track ticket.id) {
 
