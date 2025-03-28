@@ -4,18 +4,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { DialogService } from 'primeng/dynamicdialog';
 import { TooltipModule } from 'primeng/tooltip';
 import { ItemModalComponent } from '../item-modal/item-modal.component';
-
-const statusMapperColors = {
-  Medium: 'bg-yellow-200',
-  High: 'bg-red-200',
-  Low: 'bg-green-200',
-};
-
-const statusMapperText = {
-  Medium: 'Media',
-  High: 'Alta',
-  Low: 'Baixa',
-};
+import { DateFnsHelper } from '../../helpers/date-fns-helper';
 
 @Component({
   selector: 'app-kanban-item',
@@ -30,11 +19,15 @@ export class KanbanItemComponent implements OnInit {
   // Inputs
   public item = input.required<KanbanItem>();
   // Properties
-  protected color = computed(() => {
-    return statusMapperColors[this.item().priority];
+
+  protected statusURL = computed(() => {
+    return `./assets/images/icons/priorities/${this.item().priority}.svg`;
   });
-  protected statusText = computed(() => {
-    return statusMapperText[this.item().priority];
+
+  protected formatDistance = computed(() => {
+    return DateFnsHelper.formatDistanceStrict({
+      date: this.item().createdAt,
+    });
   });
 
   public ngOnInit(): void {

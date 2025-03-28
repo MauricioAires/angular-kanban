@@ -2,24 +2,39 @@
   [attr.aria-label]="
     item().title + 'Use a tecla Enter para carregar a visualização do item.'
   "
-  class="kanban-item-container"
+  class="kanban-item-container text-left"
   (click)="openItemModal()"
   type="button"
 >
-  <header>
-    <p class="font-normal text-sm mb-4 m-0">{{ item().title }}</p>
+  <header class="mb-2 flex justify-content-between align-items-center">
+    <p class="font-semibold text-sm mb-1 m-0">{{ item().title }}</p>
+    <img width="18px" height="18px" draggable="false" [src]="statusURL()" />
   </header>
 
-  <p class="text-sm">{{ item().description }}</p>
+  <div class="flex text-gray-800 flex-column gap-2">
+    <span>
+      <i class="pi pi-user"></i>
+      {{ item().document }}
+    </span>
+    <!-- <p class="text-sm">{{ item().description }}</p> -->
 
-  <footer class="flex flex-row justify-content-between align-items-center">
-    <div [class]="color()" class="px-4 py-1 rounded-full">
-      <span>{{ statusText() }}</span>
+    <span class="flex flex-row gap-1 text-xs">
+      <i class="pi pi-map-marker"></i>
+      {{ item().branch }}
+    </span>
+  </div>
+
+  <footer
+    class="flex pt-1 mt-2 flex-row justify-content-between align-items-center"
+  >
+    <div class="flex flex-row align-items-center justify-content-center">
+      <span class="flex text-gray-800 flex-row gap-1 text-sm">
+        <i class="pi pi-stopwatch"></i>
+        {{ formatDistance() }}
+      </span>
     </div>
-
     <p-avatar
       [label]="getInitials(item().assignee)"
-      styleClass="mr-2"
       [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }"
       shape="circle"
       [pTooltip]="'Responsável: ' + item().assignee"
