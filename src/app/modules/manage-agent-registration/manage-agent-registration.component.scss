@@ -21,3 +21,25 @@
 .cdk-drop-list-dragging .cdk-drag {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+
+.input-search {
+  &:focus-within {
+    @include styleclass("border-blue-600");
+  }
+
+  input {
+    background: inherit;
+  }
+}
+
+::ng-deep {
+  .p-avatar-group p-avatar + p-avatar {
+    margin-left: -0.7rem;
+  }
+  p-avatargroup {
+    .p-avatar {
+      width: 36px;
+      height: 36px;
+    }
+  }
+}

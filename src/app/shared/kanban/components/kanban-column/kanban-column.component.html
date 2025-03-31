@@ -3,7 +3,7 @@
 </div>
 
 <div
-  class="flex-1 overflow-auto relative"
+  class="flex-1 overflow-auto relative h-full"
   [class.overflow-hidden]="canDrop() || cannotDrop()"
 >
   @if(cannotDrop()){
@@ -11,7 +11,7 @@
   }@else if(canDrop()){
   <app-can-drop-container [columnTitle]="columnTitle()" />
   }
-  <div class="flex flex-1 flex-column relative overflow-auto">
+  <div class="flex flex-1 flex-column relative h-full">
     <ng-content />
   </div>
 </div>

@@ -8,7 +8,13 @@
 >
   <header class="mb-2 flex justify-content-between align-items-center">
     <p class="font-semibold text-sm mb-1 m-0">{{ item().title }}</p>
-    <img width="18px" height="18px" draggable="false" [src]="statusURL()" />
+    <img
+      alt=""
+      width="18px"
+      height="18px"
+      draggable="false"
+      [src]="statusURL()"
+    />
   </header>
 
   <div class="flex text-gray-800 flex-column gap-2">

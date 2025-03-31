@@ -1,4 +1,63 @@
 <div class="my-24">
+  <header class="flex flex-row align-items-center mb-3">
+    <label
+      class="input-search border-1 w-12rem border-gray-600 hover:bg-gray-100 p-2 cursor-auto border-round-sm flex flex-row overflow-hidden"
+      role="presentation"
+      htmlFor="search"
+    >
+      <i
+        class="pi pi-search text-sm mr-1 text-gray-600 flex justify-content-center align-items-center"
+      ></i>
+      <input
+        aria-label="Pesquisar"
+        maxlength="255"
+        class="border-none outline-none max-w-full min-w-min w-full"
+        type="text"
+        placeholder="Pesquisar"
+        autocomplete="off"
+        name="search"
+        id="search"
+      />
+    </label>
+
+    <fieldset class="p-0 border-none">
+      <legend hidden="true">Filtrar por responsável</legend>
+
+      <p-avatarGroup class="m-0 p-0">
+        <p-avatar
+          image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"
+          shape="circle"
+          class="cursor-pointer"
+        />
+        <p-avatar
+          image="https://primefaces.org/cdn/primeng/images/demo/avatar/ionibowcher.png"
+          shape="circle"
+          class="cursor-pointer"
+        />
+        <p-avatar
+          image="https://primefaces.org/cdn/primeng/images/demo/avatar/xuxuefeng.png"
+          shape="circle"
+          class="cursor-pointer"
+        />
+        <p-avatar
+          label="+2"
+          shape="circle"
+          class="cursor-pointer"
+          [style]="{
+            'background-color': '#9c27b0',
+            color: '#ffffff',
+            'font-size': '14px'
+          }"
+        />
+      </p-avatarGroup>
+    </fieldset>
+
+    <button
+      class="border-none bg-white hover:bg-gray-200 text-sm text-gray-900 font-semibold border-round-sm m-1 flex flex-row gap-1 h-2rem px-2 justify-content-center align-items-center"
+    >
+      Filtros rápidos <i class="pi pi-angle-down"></i>
+    </button>
+  </header>
   <div
     style="height: calc(100dvh - 200px)"
     class="flex overflow-auto w-full flex-row gap-3"
@@ -24,7 +83,7 @@
         <span class="ml-2 font-normal"> {{ column.count }}</span>
       </h2>
 
-      <div class="relative p-2 flex flex-column flex-1 h-full overflow-hidden">
+      <div class="relative p-2 flex flex-column flex-1 h-full overflow-auto">
         <!-- Looping sobre os tickets -->
         @for (ticket of column.tickets; track ticket.id) {
 

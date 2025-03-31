@@ -10,6 +10,9 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+
 import {
   KanbanColumn,
   KanbanItem,
@@ -28,6 +31,8 @@ import { debounceTime, of } from 'rxjs';
     CdkDrag,
     CdkDropList,
     CdkDropListGroup,
+    AvatarModule,
+    AvatarGroupModule,
   ],
   templateUrl: './manage-agent-registration.component.html',
   styleUrl: './manage-agent-registration.component.scss',
@@ -79,6 +84,11 @@ export class ManageAgentRegistrationComponent implements OnInit {
 
     this.dragging.set(true);
   }
+
+  protected trackById(index: number, item: any): number {
+    return item.id;
+  }
+
   public onDragEnd(event: CdkDragStart<any[]>) {
     this.columns.update((state) =>
       state.map((column) => {
