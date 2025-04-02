@@ -1,4 +1,13 @@
-<div class="my-24">
+<div
+  class="my-24 flex flex-column"
+  style="
+    max-height: 100%;
+    height: 100%;
+    padding: 10px;
+    background: cyan;
+    overflow: hidden;
+  "
+>
   <header class="flex flex-row align-items-center mb-3">
     <label
       class="input-search border-1 w-12rem border-gray-600 hover:bg-gray-100 p-2 cursor-auto border-round-sm flex flex-row overflow-hidden"
@@ -58,48 +67,53 @@
       Filtros rápidos <i class="pi pi-angle-down"></i>
     </button>
   </header>
+
   <div
-    style="height: calc(100dvh - 200px)"
-    class="flex overflow-auto w-full flex-row gap-3"
+    style="overflow-x: hidden"
+    class="overflow-auto"
+    #scrollContainer
+    cdkScrollable
     cdkDropListGroup
   >
-    @for (column of columns(); track column.id) {
+    <main class="flex flex-row gap-3">
+      @for (column of columns(); track column.id) {
 
-    <app-kanban-column
-      class="flex-1 bg-gray-100 relative kanban-column border-round-lg"
-      cdkDropList
-      [cdkDropListData]="column"
-      (cdkDropListDropped)="drop($event)"
-      [cdkDropListEnterPredicate]="evenPredicate"
-      [canDrop]="canDrop(column)"
-      [cannotDrop]="cannotDrop(column)"
-      [columnTitle]="column.title"
-      [cdkDropListAutoScrollStep]="30"
-    >
-      <h2
-        class="text-xs sticky w-full flex top-0 my-3 px-2 text-gray-600 font-bold uppercase white-space-nowrap"
+      <app-kanban-column
+        cdkDropList
+        [cdkDropListData]="column"
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListEnterPredicate]="evenPredicate"
+        [canDrop]="canDrop(column)"
+        [cannotDrop]="cannotDrop(column)"
+        [columnTitle]="column.title"
+        [cdkDropListAutoScrollStep]="10"
+        [visibleHeight]="visibleHeight()"
       >
-        <span> {{ column.title }}</span>
-        <span class="ml-2 font-normal"> {{ column.count }}</span>
-      </h2>
+        <h2
+          class="text-xs sticky w-full flex top-0 my-3 px-2 text-gray-600 font-bold uppercase white-space-nowrap"
+        >
+          <span> {{ column.title }}</span>
+          <span class="ml-2 font-normal"> {{ column.count }}</span>
+        </h2>
 
-      <div class="relative p-2 flex flex-column flex-1 h-full overflow-auto">
-        <!-- Looping sobre os tickets -->
-        @for (ticket of column.tickets; track ticket.id) {
+        <div class="p-2 flex flex-column flex-1 h-full">
+          <!-- Looping sobre os tickets -->
+          @for (ticket of column.tickets; track ticket.id) {
 
-        <app-kanban-item
-          cdkDrag
-          [cdkDragData]="ticket"
-          (cdkDragStarted)="onDragStart($event)"
-          (cdkDragEnded)="onDragEnd($event)"
-          cdkDragPreviewContainer="parent"
-          [item]="ticket"
-          class="mb-1 kanban-item"
-        />
+          <app-kanban-item
+            cdkDrag
+            [cdkDragData]="ticket"
+            (cdkDragStarted)="onDragStart($event)"
+            (cdkDragEnded)="onDragEnd($event)"
+            cdkDragPreviewContainer="global"
+            [item]="ticket"
+            class="mb-1 kanban-item"
+          />
 
-        }
-      </div>
-    </app-kanban-column>
-    }
+          }
+        </div>
+      </app-kanban-column>
+      }
+    </main>
   </div>
 </div>

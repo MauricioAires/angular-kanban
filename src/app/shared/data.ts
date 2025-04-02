@@ -19,7 +19,7 @@ export function createMockColumns(): KanbanColumn[] {
         max: 100,
       }),
       title: 'Cadastro Agente',
-      tickets: Array(40)
+      tickets: Array(30)
         .fill(0)
         .map(() => cerateTask(column.map((c) => c.id))),
       allowedStatus: column.slice(0, 2).map((c) => c.id),

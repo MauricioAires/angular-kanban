@@ -183,3 +183,7 @@ body {
   src: url("./assets/fonts/inter-v18-latin/inter-v18-latin-900italic.woff2")
     format("woff2");
 }
+
+:root {
+  --kanban-column-header-height: 47px;
+}

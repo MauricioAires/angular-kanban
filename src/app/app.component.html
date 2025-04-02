@@ -1,35 +1,37 @@
-<header
-  class="flex sticky align-items-center justify-content-between px-3 py-2 border-gray-200 border-bottom-1 bg-white"
->
-  <div class="flex align-items-center gap-3">
-    <button
-      pButton
-      icon="pi pi-th-large"
-      class="p-button-text flex flex-row gap-2 text-primary"
-    >
-      WeFin
-    </button>
-  </div>
-
-  <div class="flex align-items-center gap-3">
-    <p-avatar
-      label="MF"
-      styleClass="mr-2"
-      [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }"
-      shape="circle"
-      pTooltip="Perfil e configurações"
-      tooltipPosition="bottom"
-    />
-  </div>
-</header>
-
-<div style="max-width: 100dvw" class="flex">
-  <aside class="h-screen border-right-1 border-gray-200 flex flex-column">
+<div class="flex flex-row" style="width: 100dvw; height: 100dvh">
+  <aside
+    class="h-screen w-14rem border-right-1 border-gray-200 flex flex-column"
+  >
     <nav class="flex w-15rem flex-column gap-2"></nav>
   </aside>
 
-  <!-- Área de conteúdo -->
-  <main class="flex-grow-1 p-4 overflow-hidden">
-    <router-outlet />
-  </main>
+  <div class="bg-yellow-400 flex-1 flex flex-column">
+    <header
+      class="flex sticky align-items-center justify-content-between px-3 py-2 border-gray-200 border-bottom-1 bg-white h-10rem"
+    >
+      <div class="flex align-items-center gap-3">
+        <button
+          pButton
+          icon="pi pi-th-large"
+          class="p-button-text flex flex-row gap-2 text-primary"
+        >
+          WeFin
+        </button>
+      </div>
+
+      <div class="flex align-items-center gap-3">
+        <p-avatar
+          label="MF"
+          styleClass="mr-2"
+          [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }"
+          shape="circle"
+          pTooltip="Perfil e configurações"
+          tooltipPosition="bottom"
+        />
+      </div>
+    </header>
+    <main class="bg-pink-400 flex-grow-1 overflow-hidden">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
 </div>

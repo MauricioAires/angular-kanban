@@ -1,4 +1,14 @@
-import { Component, OnInit, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  inject,
+  OnInit,
+  Renderer2,
+  signal,
+  ViewChild,
+} from '@angular/core';
 
 import {
   CdkDrag,
@@ -9,6 +19,8 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
@@ -33,11 +45,13 @@ import { debounceTime, of } from 'rxjs';
     CdkDropListGroup,
     AvatarModule,
     AvatarGroupModule,
+    ScrollingModule,
   ],
   templateUrl: './manage-agent-registration.component.html',
   styleUrl: './manage-agent-registration.component.scss',
 })
-export class ManageAgentRegistrationComponent implements OnInit {
+export class ManageAgentRegistrationComponent implements OnInit, AfterViewInit {
+  protected visibleHeight = signal(0);
   protected columns = signal<KanbanColumn[]>([]);
   protected dragging = signal(false);
   protected draggingColumnId = signal(0);
@@ -137,6 +151,28 @@ export class ManageAgentRegistrationComponent implements OnInit {
         previousIndex,
         currentIndex
       );
+    }
+  }
+
+  @ViewChild('scrollContainer') scrollContainer!: ElementRef;
+  @ViewChild('targetDiv') targetDiv!: ElementRef;
+
+  public ngAfterViewInit(): void {
+    this.updateHeight();
+  }
+
+  @HostListener('window:resize')
+  private onResize() {
+    this.updateHeight();
+  }
+
+  private updateHeight(): void {
+    if (this.scrollContainer) {
+      const height = this.scrollContainer.nativeElement.clientHeight;
+
+      console.log(this.scrollContainer.nativeElement);
+
+      this.visibleHeight.set(height);
     }
   }
 }
