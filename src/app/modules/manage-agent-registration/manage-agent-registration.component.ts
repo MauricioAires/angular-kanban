@@ -52,6 +52,7 @@ import { debounceTime, of } from 'rxjs';
 })
 export class ManageAgentRegistrationComponent implements OnInit, AfterViewInit {
   protected visibleHeight = signal(0);
+
   protected columns = signal<KanbanColumn[]>([]);
   protected dragging = signal(false);
   protected draggingColumnId = signal(0);
@@ -129,14 +130,14 @@ export class ManageAgentRegistrationComponent implements OnInit, AfterViewInit {
 
   /** Predicate function that only allows even numbers to be dropped into a list. */
 
-  protected drop(event: CdkDragDrop<KanbanColumn>) {
+  protected drop(e: CdkDragDrop<KanbanColumn>) {
     const {
       previousIndex,
       currentIndex,
       container,
       previousContainer,
       isPointerOverContainer,
-    } = event;
+    } = e;
 
     if (!isPointerOverContainer) {
       return;
@@ -166,11 +167,9 @@ export class ManageAgentRegistrationComponent implements OnInit, AfterViewInit {
     this.updateHeight();
   }
 
-  private updateHeight(): void {
+  protected updateHeight(): void {
     if (this.scrollContainer) {
       const height = this.scrollContainer.nativeElement.clientHeight;
-
-      console.log(this.scrollContainer.nativeElement);
 
       this.visibleHeight.set(height);
     }

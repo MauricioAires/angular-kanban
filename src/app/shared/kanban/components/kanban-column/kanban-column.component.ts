@@ -6,7 +6,6 @@ import {
   input,
   Renderer2,
   viewChild,
-  viewChildren,
 } from '@angular/core';
 import { CanDropContainerComponent } from '../can-drop-container/can-drop-container.component';
 import { CannotDropContainerComponent } from '../cannot-drop-container/cannot-drop-container.component';

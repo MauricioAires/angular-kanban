@@ -1,5 +1,9 @@
 @import "primeflex/primeflex.scss";
 
+:host {
+  min-height: 147px;
+}
+
 ::ng-deep {
   /* Tooltip */
   .p-tooltip-arrow {

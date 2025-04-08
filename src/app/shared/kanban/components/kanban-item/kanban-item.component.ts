@@ -17,16 +17,20 @@ export class KanbanItemComponent implements OnInit {
   // Services
   private dialogService = inject(DialogService);
   // Inputs
-  public item = input.required<KanbanItem>();
+  public item = input.required<KanbanItem | null>();
   // Properties
 
   protected statusURL = computed(() => {
-    return `./assets/images/icons/priorities/${this.item().priority}.svg`;
+    return `./assets/images/icons/priorities/${this.item()?.priority}.svg`;
   });
 
   protected formatDistance = computed(() => {
+    if (this.item() === null) {
+      return '';
+    }
+
     return DateFnsHelper.formatDistanceStrict({
-      date: this.item().createdAt,
+      date: this.item()!.createdAt,
     });
   });
 

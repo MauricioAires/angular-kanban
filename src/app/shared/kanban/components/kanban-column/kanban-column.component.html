@@ -2,14 +2,21 @@
   class="kanban-column-header flex align-items-center flex-column sticky top-0 z-5 bg-gray-100"
 >
   <ng-content select="h2" />
+
+  @if(cannotDrop()){
+  <app-cannot-drop-container class="absolute" style="top: 47px" />
+  }@else if(canDrop()){
+  <app-can-drop-container
+    class="absolute"
+    style="top: 47px"
+    [columnTitle]="columnTitle()"
+  />
+  }
 </div>
 
-<div class="flex-1 relative flex flex-column" style="height: 100%">
-  @if(cannotDrop()){
-  <app-cannot-drop-container />
-  }@else if(canDrop()){
-  <app-can-drop-container [columnTitle]="columnTitle()" />
-  }
-
+<div
+  style="margin-top: -47px"
+  class="flex-1 relative flex align-self-stretch flex-column flex-shrink-1 h-full flex-grow-1"
+>
   <ng-content />
 </div>
