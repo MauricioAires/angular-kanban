@@ -8,7 +8,10 @@ export const routes: Routes = [
     children: [
       {
         path: 'manager-agent',
-        component: ManageAgentRegistrationComponent,
+        loadComponent: () =>
+          import(
+            './modules/manage-agent-registration/manage-agent-registration.component'
+          ).then((c) => c.ManageAgentRegistrationComponent),
       },
       {
         path: '',

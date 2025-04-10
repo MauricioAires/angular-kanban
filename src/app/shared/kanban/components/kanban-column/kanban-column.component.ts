@@ -16,6 +16,9 @@ import { CannotDropContainerComponent } from '../cannot-drop-container/cannot-dr
   imports: [CanDropContainerComponent, CannotDropContainerComponent],
   templateUrl: './kanban-column.component.html',
   styleUrl: './kanban-column.component.scss',
+  host: {
+    class: 'bg-gray-100 border-round-lg',
+  },
 })
 export class KanbanColumnComponent {
   private renderer2 = inject(Renderer2);

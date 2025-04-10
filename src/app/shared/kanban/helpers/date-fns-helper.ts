@@ -1,12 +1,20 @@
-import {
-  add,
-  format,
-  formatDistance,
-  formatDistanceStrict,
-  type Month,
-  parseISO as parseISOFns,
-  toDate as toDateFns,
-} from 'date-fns';
+// import {
+//   add,
+//   format,
+//   formatDistance,
+//   formatDistanceStrict,
+//   type Month,
+//   parseISO as parseISOFns,
+//   toDate as toDateFns,
+// } from 'date-fns';
+import { add } from 'date-fns/add';
+import { format } from 'date-fns/format';
+import { formatDistance } from 'date-fns/formatDistance';
+import { formatDistanceStrict } from 'date-fns/formatDistanceStrict';
+import { type Month } from 'date-fns/types';
+import { parseISO as parseISOFns } from 'date-fns/parseISO';
+import { toDate as toDateFns } from 'date-fns/toDate';
+
 import { ptBR } from 'date-fns/locale/pt-BR';
 
 export interface FormatDistance {

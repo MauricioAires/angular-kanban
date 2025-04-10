@@ -81,7 +81,6 @@
         [columnTitle]="column.title"
         [cdkDropListAutoScrollStep]="10"
         [visibleHeight]="visibleHeight()"
-        cdkDragScale="1000"
       >
         <h2
           class="text-xs sticky w-full flex top-0 my-3 px-2 text-gray-600 font-bold uppercase white-space-nowrap"
@@ -90,8 +89,7 @@
           <span class="ml-2 font-normal"> {{ column.count }}</span>
         </h2>
 
-        <div class="p-2 flex flex-column flex-shrink-1 flex-1">
-          <!-- Looping sobre os tickets -->
+        <div class="p-2 flex flex-column relative flex-shrink-1 flex-1">
           @for (ticket of column.tickets; track ticket.id) {
 
           <app-kanban-item
@@ -102,6 +100,13 @@
             [item]="ticket"
             class="mb-1 kanban-item"
           />
+
+          <div
+            [class.flex]="dragging() && !column.isDragging"
+            class="absolute hidden pt-6 justify-content-center border-2 border-green-200 text-gray-900 bg-gray-100 top-0 bottom-0 left-0 right-0"
+          >
+            {{ column.title }}
+          </div>
 
           }
 

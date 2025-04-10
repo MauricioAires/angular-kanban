@@ -18,7 +18,7 @@ export function createMockColumns(): KanbanColumn[] {
         min: 10,
         max: 100,
       }),
-      title: 'Cadastro Agente',
+      title: 'Prospecção',
       tickets: Array(30)
         .fill(0)
         .map(() => cerateTask(column.map((c) => c.id))),
@@ -32,7 +32,7 @@ export function createMockColumns(): KanbanColumn[] {
         min: 10,
         max: 100,
       }),
-      title: 'Modelo de comissão',
+      title: 'Cadastro',
       tickets: Array(32)
         .fill(0)
         .map(() => cerateTask(column.map((c) => c.id))),

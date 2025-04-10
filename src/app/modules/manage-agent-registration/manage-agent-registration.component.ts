@@ -3,9 +3,7 @@ import {
   Component,
   ElementRef,
   HostListener,
-  inject,
   OnInit,
-  Renderer2,
   signal,
   ViewChild,
 } from '@angular/core';
@@ -31,8 +29,9 @@ import {
   KanbanColumnComponent,
   KanbanItemComponent,
 } from '../../shared/kanban';
-import { createMockColumns } from '../../shared/data';
+// import { createMockColumns } from '../../shared/data';
 import { debounceTime, of } from 'rxjs';
+import { createMockColumns } from '../../shared/data';
 
 @Component({
   selector: 'app-manage-agent-registration',
@@ -62,7 +61,6 @@ export class ManageAgentRegistrationComponent implements OnInit, AfterViewInit {
       .pipe(debounceTime(300))
       .subscribe((res) => {
         console.log(res);
-
         this.columns.set(res);
       });
   }

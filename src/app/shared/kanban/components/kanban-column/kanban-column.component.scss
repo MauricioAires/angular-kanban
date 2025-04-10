@@ -1,8 +1,4 @@
-@import "primeflex/primeflex.scss";
-
 :host {
-  @include styleclass("bg-gray-100 border-round-lg");
-
   min-width: 200px;
   flex: 1;
   position: relative;

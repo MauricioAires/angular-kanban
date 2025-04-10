@@ -1,12 +1,4 @@
-@import "primeflex/primeflex.scss";
-
 :host {
-  @include styleclass("bg-gray-100");
-
-  @include styleclass(
-    "w-full justify-content-center align-items-center pointer-events-none flex border-round-lg p-3 z-4"
-  );
-
   position: sticky;
   top: var(--kanban-column-header-height);
 }
