@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
@@ -33,7 +33,9 @@ import { CommonModule } from '@angular/common';
 export class AppComponent implements OnInit {
   protected items!: MenuItem[];
 
-  ngOnInit() {
+  protected menu = signal<number[]>(Array(19).fill(0));
+
+  public ngOnInit() {
     this.items = [
       {
         label: 'Mail',
